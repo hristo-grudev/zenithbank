@@ -15,8 +15,6 @@ class ZenithbankSpider(scrapy.Spider):
 		yield from response.follow_all(post_links, self.parse_post)
 
 	def parse_post(self, response):
-		with open('asdas.html', 'wb') as f:
-			f.write(response.body)
 		title = response.xpath('//p[contains(@class,"p1")]//text()[normalize-space()]').getall()
 		title = [p.strip() for p in title]
 		description = response.xpath('//div[@itemprop="articleBody"]//text()[normalize-space()]').getall()
